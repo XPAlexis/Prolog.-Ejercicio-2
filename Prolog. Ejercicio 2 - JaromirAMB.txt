@@ -1,0 +1,42 @@
+%Martínez Bedolla Jaromir Alexis
+entrada(antipasto).
+entrada(sopa).
+entrada(quesos).
+
+carne(milanesa).
+carne(bife_de_chorizo).
+carne(pollo_asado).
+
+pescado(congrio).
+pescado(pejerey).
+
+postre(flan).
+postre(helado).
+postre(fruta).
+
+plato_principal(P) :- carne(P); pescado(P).
+
+comida(E,P,D) :- entrada(E), plato_principal(P), postre(D). 
+
+calorias(antipasto, 178).
+calorias(sopa, 250).
+calorias(quesos, 402).
+calorias(milanesa, 284).
+calorias(bife_de_chorizo, 142).
+calorias(pollo_asado, 167).
+calorias(congrio, 102).
+calorias(pejerey, 89).
+calorias(flan, 146).
+calorias(helado, 207).
+calorias(fruta, 50).
+
+valor(E,P,D,V) :- calorias(E,X), calorias(P,Y), calorias(D,Z), V = X+Y+Z. 
+
+comida_equilibrada(X, Y, Z):-valor(X, Y, Z, V),V<800.
+
+%Para ejecutar:
+%plato_principal(P).
+%comida(E,P,D).
+%comida(E,P,D), pescado(P).
+%comida(E,P,D), valor(E,P,D,V).
+%comida_equilibrada(X, Y, Z).
